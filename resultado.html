@@ -6,6 +6,52 @@
     <title>resultado</title>
 </head>
 <body>
+
+    <div class="container">
+        <h1>Tu Edad Calculada</h1>
+        <div id="resultado">
+            <p>Calculando...</p>
+        </div>
+        
+        <p>
+            <!-- Botón regresar entrada de datos -->
+            <a href="index.html" style="text-decoration: none;">
+                <button type="button">Volver a Calcular</button>
+            </a>
+        </p>
+    </div>
+
+    <script>
+        // Usamos window.onload para asegurar que el script se ejecute después de cargar el DOM
+        window.onload = function() {
+            // Obtiene los parámetros de consulta (Query Parameters) de la URL actual
+            const params = new URLSearchParams(window.location.search);
+            const nombre = params.get('nombre');
+            // ParseInt convierte la cadena de texto 'anio' en un número entero
+            const anio = parseInt(params.get('anio'));
+
+            const resultadoDiv = document.getElementById('resultado');
+
+            // 1. Validar que los datos existan y sean válidos
+            if (nombre && anio && !isNaN(anio)) {
+                // 2. Definir el año actual (como se solicitó, asumimos 2025)
+                const anioActual = 2025; 
+                
+                // 3. Cálculo de edad
+                const edad = anioActual - anio;
+
+                // 4. Mostrar el resultado formateado
+                resultadoDiv.innerHTML = `
+                    <p class="greeting">¡Hola, <b> ${nombre} </b> ~\(≧▽≦)/~ !</p>
+                    <p class="age-result">Tienes <span class="edad-numero"> <b> ${edad} </b> </span> años.</p>
+                    <p>*(Cálculo basado en el año ${anioActual})</p>
+                `;
+            } else {
+                // 5. Manejo de error si faltan datos
+                resultadoDiv.innerHTML = '<p class="error">Error: Faltan datos válidos para calcular la edad. Por favor, vuelve a intentarlo.</p>';
+            }
+        };
+    </script>
     
 </body>
 </html>

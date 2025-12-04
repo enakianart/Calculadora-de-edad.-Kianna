@@ -6,6 +6,41 @@
     <title>Calculadora de Edad - Entrada de Datos</title>
 </head>
 <body>
+    <div class="container">
+        <h1>Calculadora de Edad</h1>
+        <p>Por favor, ingresa tu nombre y tu año de nacimiento para calcular tu edad.</p>
+
+        <!-- Formulario para la entrada de datos -->
+        <form id="Form-Edad">
+            <label for="nombre">Tu Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <br>
+            <br>
+
+            <label for="Anio-Nacimiento">Año de Nacimiento:</label>
+            <input type="number" id="Anio-Nacimiento" name="Anio-Nacimiento" max="2025" required>
+
+            <br>
+            <br>
+
+            <button type="submit">Calcular Edad</button>
+        </form>
+    </div>
+
+
+    <script>
+        // JavaScript 
+        document.getElementById('Form-Edad').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita el envío normal del formulario
+
+            const nombre = document.getElementById('nombre').value;
+            const anio = document.getElementById('Anio-Nacimiento').value;
+
+            
+            window.location.href = `resultado.html?nombre=${encodeURIComponent(nombre)}&anio=${encodeURIComponent(anio)}`;
+        });
+    </script>
     
 </body>
 </html>
